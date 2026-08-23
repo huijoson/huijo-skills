@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="{{LANGUAGE_TAG}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{DOCUMENT_TITLE}}</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #61708a;
+      --paper: #f6f8fc;
+      --panel: #ffffff;
+      --line: #dce3ee;
+      --brand: #3158d3;
+      --observed: #0f766e;
+      --proposed: #3158d3;
+      --decided: #6d28d9;
+      --open: #b45309;
+      --danger: #b42318;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--brand); }
+    header {
+      color: white;
+      background: linear-gradient(135deg, #172554, #3158d3 58%, #0f766e);
+      padding: 64px 24px 52px;
+    }
+    header .wrap, main { max-width: 1180px; margin: auto; }
+    h1 { margin: 0 0 10px; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.1; }
+    h2 { margin-top: 0; font-size: 1.75rem; line-height: 1.25; }
+    h3 { font-size: 1.12rem; }
+    .subtitle { max-width: 820px; font-size: 1.14rem; opacity: .92; }
+    .meta, .legend, .grid, .split { display: grid; gap: 16px; }
+    .meta { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-top: 28px; }
+    .meta div { padding: 12px 14px; border: 1px solid #ffffff35; border-radius: 12px; background: #ffffff12; }
+    main { padding: 30px 22px 80px; }
+    section { scroll-margin-top: 18px; margin: 22px 0; padding: 28px; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 10px 30px #21345a0d; }
+    .hero-answer { font-size: 1.26rem; font-weight: 700; border-left: 5px solid var(--brand); padding-left: 18px; }
+    .legend { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 18px 0; }
+    .tag { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: .78rem; font-weight: 750; color: white; vertical-align: middle; }
+    .observed { background: var(--observed); }
+    .proposed { background: var(--proposed); }
+    .decided { background: var(--decided); }
+    .open { background: var(--open); }
+    .grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .split { grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
+    .card { padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: #fbfcff; }
+    .card h3 { margin-top: 0; }
+    .callout { padding: 16px 18px; border-radius: 12px; background: #fff8eb; border-left: 5px solid var(--open); }
+    .risk { background: #fff5f4; border-left-color: var(--danger); }
+    table { width: 100%; border-collapse: collapse; font-size: .94rem; }
+    th, td { padding: 11px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    th { color: #394963; background: #f3f6fb; }
+    code { padding: 2px 5px; background: #eef2f8; border-radius: 5px; }
+    .diagram { overflow-x: auto; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: white; }
+    .appendix-title { margin-top: 52px; padding-top: 26px; border-top: 4px solid var(--ink); }
+    .small { color: var(--muted); font-size: .9rem; }
+    ul, ol { padding-left: 1.3rem; }
+    @media print {
+      body { background: white; }
+      header { padding: 28px 0; background: white; color: var(--ink); border-bottom: 2px solid var(--ink); }
+      main { padding: 0; }
+      section { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="tag proposed">{{DOCUMENT_STATUS}}</div>
+      <h1>{{DOCUMENT_TITLE}}</h1>
+      <p class="subtitle">{{DOCUMENT_SUBTITLE}}</p>
+      <div class="meta">
+        <div><strong>{{LABEL_SCOPE}}</strong><br>{{SCOPE_VALUE}}</div>
+        <div><strong>{{LABEL_UPDATED}}</strong><br>{{UPDATED_VALUE}}</div>
+        <div><strong>{{LABEL_OWNER}}</strong><br>{{OWNER_VALUE}}</div>
+        <div><strong>{{LABEL_DECISION_STATE}}</strong><br>{{DECISION_STATE_VALUE}}</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>{{LABEL_HOW_TO_READ}}</h2>
+      <p>{{HOW_TO_READ_TEXT}}</p>
+      <div class="legend">
+        <div><span class="tag observed">{{LABEL_OBSERVED}}</span> {{OBSERVED_HELP}}</div>
+        <div><span class="tag proposed">{{LABEL_PROPOSED}}</span> {{PROPOSED_HELP}}</div>
+        <div><span class="tag decided">{{LABEL_DECIDED}}</span> {{DECIDED_HELP}}</div>
+        <div><span class="tag open">{{LABEL_OPEN}}</span> {{OPEN_HELP}}</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>{{PLAIN_SUMMARY_TITLE}}</h2>
+      <p class="hero-answer">{{ONE_SENTENCE_OUTCOME}}</p>
+      <p>{{PROBLEM_IN_PLAIN_LANGUAGE}}</p>
+      <div class="callout">{{CURRENT_RECOMMENDATION}}</div>
+    </section>
+
+    <section>
+      <h2>{{BEFORE_AFTER_TITLE}}</h2>
+      <div class="split">
+        <div class="card">
+          <h3>{{BEFORE_TITLE}}</h3>
+          <div class="diagram"><pre class="mermaid">{{BEFORE_MERMAID}}</pre></div>
+          <p>{{BEFORE_EXPLANATION}}</p>
+        </div>
+        <div class="card">
+          <h3>{{AFTER_TITLE}}</h3>
+          <div class="diagram"><pre class="mermaid">{{AFTER_MERMAID}}</pre></div>
+          <p>{{AFTER_EXPLANATION}}</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>{{CHANGE_SCOPE_TITLE}}</h2>
+      <table>
+        <thead><tr>{{CHANGE_SCOPE_HEADERS}}</tr></thead>
+        <tbody>{{CHANGE_SCOPE_ROWS}}</tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>{{FUNCTIONAL_IMPACT_TITLE}}</h2>
+      <table>
+        <thead><tr>{{FUNCTIONAL_IMPACT_HEADERS}}</tr></thead>
+        <tbody>{{FUNCTIONAL_IMPACT_ROWS}}</tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>{{TECHNIQUES_TITLE}}</h2>
+      <div class="grid">{{TECHNIQUE_CARDS}}</div>
+    </section>
+
+    <section>
+      <h2>{{RISK_AND_DECISION_TITLE}}</h2>
+      <div class="callout risk"><strong>{{TOP_RISK_LABEL}}</strong> {{TOP_RISK}}</div>
+      <div class="callout" style="margin-top: 14px"><strong>{{OPEN_DECISION_LABEL}}</strong> {{OPEN_DECISION}}</div>
+    </section>
+
+    <h2 class="appendix-title">{{ARCHITECT_APPENDIX_TITLE}}</h2>
+    <p class="small">{{APPENDIX_INTRO}}</p>
+
+    <section>
+      <h2>{{BOUNDARY_TITLE}}</h2>
+      <div class="grid">{{BOUNDARY_CARDS}}</div>
+      <h3>{{NON_GOALS_TITLE}}</h3>
+      {{NON_GOALS_CONTENT}}
+    </section>
+
+    <section>
+      <h2>{{INTERFACE_CONTRACT_TITLE}}</h2>
+      <table>
+        <thead><tr>{{INTERFACE_CONTRACT_HEADERS}}</tr></thead>
+        <tbody>{{INTERFACE_CONTRACT_ROWS}}</tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>{{DEPENDENCY_TITLE}}</h2>
+      <div class="diagram"><pre class="mermaid">{{DEPENDENCY_MERMAID}}</pre></div>
+      <div class="split" style="margin-top: 16px">
+        <div class="card"><h3>{{ALLOWED_TITLE}}</h3>{{ALLOWED_DEPENDENCIES}}</div>
+        <div class="card"><h3>{{FORBIDDEN_TITLE}}</h3>{{FORBIDDEN_DEPENDENCIES}}</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>{{POLICIES_TITLE}}</h2>
+      <table>
+        <thead><tr>{{POLICY_HEADERS}}</tr></thead>
+        <tbody>{{POLICY_ROWS}}</tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>{{MIGRATION_TITLE}}</h2>
+      <ol>{{MIGRATION_STEPS}}</ol>
+      <div class="callout"><strong>{{ROLLBACK_LABEL}}</strong> {{ROLLBACK_CONTENT}}</div>
+    </section>
+
+    <section>
+      <h2>{{VERIFICATION_TITLE}}</h2>
+      <div class="split">
+        <div class="card"><h3>{{TESTS_TITLE}}</h3>{{TESTS_CONTENT}}</div>
+        <div class="card"><h3>{{ACCEPTANCE_TITLE}}</h3>{{ACCEPTANCE_CONTENT}}</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>{{ALTERNATIVES_TITLE}}</h2>
+      <table>
+        <thead><tr>{{ALTERNATIVE_HEADERS}}</tr></thead>
+        <tbody>{{ALTERNATIVE_ROWS}}</tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>{{DECISION_LOG_TITLE}}</h2>
+      <table>
+        <thead><tr>{{DECISION_LOG_HEADERS}}</tr></thead>
+        <tbody>{{DECISION_LOG_ROWS}}</tbody>
+      </table>
+      <p><strong>{{ADR_LABEL}}</strong> {{ADR_RECOMMENDATION}}</p>
+    </section>
+
+    <section>
+      <h2>{{EVIDENCE_TITLE}}</h2>
+      {{EVIDENCE_CONTENT}}
+    </section>
+  </main>
+
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "strict" });
+  </script>
+</body>
+</html>
