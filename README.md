@@ -1,8 +1,8 @@
-# codex-skills
+# huijo-skills
 
 Agent Skills written to the open [Agent Skills](https://docs.github.com/copilot/concepts/agents/about-agent-skills) standard — a folder containing `SKILL.md` with YAML frontmatter (`name`, `description`) plus optional references and assets.
 
-The repo name says "codex" for historical reasons only. Nothing here is Codex-specific: any agent that implements the Agent Skills standard can load these skills, including Codex, Claude Code, GitHub Copilot CLI, and Kiro CLI.
+Nothing here is tied to a single agent. Any host that implements the Agent Skills standard can load these skills, including Codex, Claude Code, GitHub Copilot CLI, and Kiro CLI.
 
 ## Skills
 
@@ -17,10 +17,10 @@ The repo name says "codex" for historical reasons only. Nothing here is Codex-sp
 `gh skill` resolves the correct directory per agent, so you do not need to remember paths. `--scope user` installs globally; drop it to install into the current repository only.
 
 ```bash
-gh skill install huijoson/codex-skills architecture-spec --agent codex          --scope user
-gh skill install huijoson/codex-skills architecture-spec --agent claude-code    --scope user
-gh skill install huijoson/codex-skills architecture-spec --agent github-copilot --scope user
-gh skill install huijoson/codex-skills architecture-spec --agent kiro-cli       --scope user
+gh skill install huijoson/huijo-skills architecture-spec --agent codex          --scope user
+gh skill install huijoson/huijo-skills architecture-spec --agent claude-code    --scope user
+gh skill install huijoson/huijo-skills architecture-spec --agent github-copilot --scope user
+gh skill install huijoson/huijo-skills architecture-spec --agent kiro-cli       --scope user
 ```
 
 Run `gh skill install --help` for the full list of supported agents (Cursor, Gemini CLI, Amp, Goose, and others).
@@ -36,8 +36,8 @@ gh skill install . architecture-spec --from-local --agent claude-code --scope us
 Clone, then copy the skill directory into your agent's skills directory.
 
 ```bash
-git clone https://github.com/huijoson/codex-skills.git
-cd codex-skills
+git clone https://github.com/huijoson/huijo-skills.git
+cd huijo-skills
 ```
 
 | Agent | Personal (all projects) | Project-scoped |
