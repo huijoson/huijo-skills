@@ -13,6 +13,7 @@ description: >-
   choices one question at a time. Do not use for implementation-only
   requests, a narrow code review with no design artifact, or a simple impact
   summary that does not request architectural analysis.
+license: MIT
 ---
 
 # Architecture Spec
@@ -27,7 +28,7 @@ Before drafting, read `references/architecture-quality.md` completely. Use `asse
 
 ### 1. Establish the request and evidence
 
-Treat the text after `$architecture-spec` as the topic and requested outcome. If no topic is supplied, infer it from the current conversation; ask only when the scope cannot be determined safely.
+Treat the text after the skill invocation as the topic and requested outcome. The invocation may arrive as `$architecture-spec`, `/architecture-spec`, `architecture-spec`, or a plain request that matches this skill's description — treat all forms identically. If no topic is supplied, infer it from the current conversation; ask only when the scope cannot be determined safely.
 
 Inspect before asking questions:
 
@@ -120,12 +121,14 @@ If evidence is incomplete, say exactly what was not verified. Never present a pr
 
 ## Invocation examples
 
+The prefix depends on the host agent — `$` in Codex, `/` in Claude Code and Copilot CLI, or no prefix at all. A plain-language request that matches the description above is also a valid invocation.
+
 ```text
 $architecture-spec Deepen the Schedule Event module
 ```
 
 ```text
-$architecture-spec 請把付款流程重構畫成雙層架構規格 HTML，先查程式碼，一次問我一個決策。
+/architecture-spec 請把付款流程重構畫成雙層架構規格 HTML，先查程式碼，一次問我一個決策。
 ```
 
 ```text
