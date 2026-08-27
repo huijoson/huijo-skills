@@ -15,8 +15,8 @@ set -euo pipefail
 REPO_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 # agent id -> personal skills directory
-AGENT_IDS=(codex claude-code github-copilot kiro-cli)
-AGENT_DIRS=("$HOME/.codex/skills" "$HOME/.claude/skills" "$HOME/.copilot/skills" "$HOME/.kiro/skills")
+AGENT_IDS=(codex claude-code github-copilot kiro-cli antigravity)
+AGENT_DIRS=("$HOME/.codex/skills" "$HOME/.claude/skills" "$HOME/.copilot/skills" "$HOME/.kiro/skills" "$HOME/.gemini/config/skills")
 
 # A directory containing SKILL.md is a skill.
 find_skills() {
@@ -40,7 +40,8 @@ dir_for_agent() {
 # An agent counts as present if its config root exists, so skills can be
 # installed before the agent has created a skills directory of its own.
 agent_present() {
-  [ -d "$(dirname -- "$1")" ]
+  local dir="$1"
+  [ -d "$(dirname -- "$dir")" ] || { [ "$dir" = "$HOME/.gemini/config/skills" ] && [ -d "$HOME/.gemini" ]; }
 }
 
 list_only=0

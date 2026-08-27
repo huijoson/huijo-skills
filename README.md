@@ -46,6 +46,7 @@ cd huijo-skills
 | Claude Code | `~/.claude/skills/` | `.claude/skills/` |
 | GitHub Copilot CLI | `~/.copilot/skills/` or `~/.agents/skills/` | `.github/skills/`, `.claude/skills/`, or `.agents/skills/` |
 | Kiro CLI | `~/.kiro/skills/` | — |
+| Antigravity | `~/.gemini/config/skills/` | `.agents/skills/` |
 
 ```bash
 # example: personal install for Claude Code
@@ -77,6 +78,7 @@ You can also name the skill explicitly. The prefix differs by agent:
 | Claude Code | `/architecture-spec <topic>` |
 | Copilot CLI | `/architecture-spec <topic>` |
 | Kiro CLI | `architecture-spec <topic>` |
+| Antigravity | `architecture-spec <topic>` 或自然語言觸發 (在 Antigravity 中開頭 `/` 為 UI 內建系統捷徑，自訂技能透過名稱或語意觸發) |
 
 In Copilot CLI, `/skills list` shows loaded skills and `/skills reload` picks up a skill added mid-session.
 

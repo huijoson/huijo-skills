@@ -90,6 +90,12 @@ The architect appendix must make approval possible:
 
 Use diagrams only for relationships that prose cannot show as clearly. Keep each diagram to a small number of domain-level nodes. Make every code reference secondary to the behavior it supports. Treat Mermaid as an enhancement: when external CDN access is unavailable, use inline SVG or simple HTML/CSS flow diagrams for the required Before/After views.
 
+To prevent Mermaid rendering errors:
+- Always quote node labels containing special characters, brackets, or parentheses: e.g. `node["Label (Details)"]`.
+- Never use unescaped angle brackets or raw stereotypes like `<<interface>>` in flowchart labels; use `«interface»`, `&laquo;interface&raquo;`, or `[interface]`.
+- For multi-line labels inside flowchart nodes, use `<br/>` instead of `\n`.
+- Avoid embedding raw unescaped HTML tags in labels.
+
 Completion criterion: the HTML opens on its own, contains no unresolved template tokens, and clearly separates Observed, Proposed, Decided, and Open content.
 
 ### 4. Resolve decisions one question at a time
@@ -121,7 +127,12 @@ If evidence is incomplete, say exactly what was not verified. Never present a pr
 
 ## Invocation examples
 
-The prefix depends on the host agent — `$` in Codex, `/` in Claude Code and Copilot CLI, or no prefix at all. A plain-language request that matches the description above is also a valid invocation.
+The prefix depends on the host agent:
+
+- **Codex**: `$architecture-spec <topic>`
+- **Claude Code & Copilot CLI**: `/architecture-spec <topic>`
+- **Antigravity & Kiro CLI**: `architecture-spec <topic>` or natural language prompt (in Antigravity, leading `/` is reserved for client-side UI shortcuts, so custom skills are triggered by name or semantic description matching)
+- **Plain language**: A request that matches the description above is always a valid invocation across all agents.
 
 ```text
 $architecture-spec Deepen the Schedule Event module
@@ -129,6 +140,10 @@ $architecture-spec Deepen the Schedule Event module
 
 ```text
 /architecture-spec 請把付款流程重構畫成雙層架構規格 HTML，先查程式碼，一次問我一個決策。
+```
+
+```text
+architecture-spec 請針對 inline-agent 產出雙層架構規格報告
 ```
 
 ```text
