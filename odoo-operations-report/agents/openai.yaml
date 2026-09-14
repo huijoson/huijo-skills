@@ -1,0 +1,4 @@
+interface:
+  display_name: "Odoo 維運報告"
+  short_description: "將 Odoo MCP 維運紀錄整理為 HTML 與 Markdown 報告"
+  default_prompt: "使用 $odoo-operations-report 將上述 Odoo MCP 結果整理為 HTML 與 Markdown 報告，沿用本次對話已確認的欄位與刪除項目。"
