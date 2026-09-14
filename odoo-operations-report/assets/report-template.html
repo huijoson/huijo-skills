@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <style>
+    :root { color-scheme:light; --ink:#203047; --muted:#53647a; --line:#dde5ee; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#edf2f7; color:var(--ink); font-family:system-ui,"Noto Sans TC","Microsoft JhengHei",sans-serif; line-height:1.8; }
+    main { max-width:1120px; margin:40px auto; padding:48px 56px; background:#fff; border-radius:16px; box-shadow:0 8px 36px #2030470a; }
+    header { border-top:5px solid #285e89; padding-top:24px; margin-bottom:32px; }
+    h1 { margin:0 0 12px; font-size:30px; line-height:1.5; overflow-wrap:anywhere; }
+    h2 { font-size:21px; margin:32px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--line); }
+    h3 { font-size:17px; margin:20px 0 8px; }
+    p { margin:10px 0; }
+    .meta,.note { color:var(--muted); font-size:14px; }
+    .summary { padding:18px 22px; background:#f0f5fa; border-left:4px solid #285e89; border-radius:4px; white-space:pre-line; }
+    .table-wrap { overflow-x:auto; }
+    table { border-collapse:collapse; width:100%; margin:8px 0 16px; font-size:14px; }
+    th,td { padding:12px 14px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; font-variant-numeric:tabular-nums; }
+    th { background:#edf3f8; white-space:nowrap; }
+    td { min-width:7em; overflow-wrap:anywhere; }
+    tbody tr:nth-child(even) { background:#fafcfe; }
+    li { margin:5px 0; }
+    code { font-family:ui-monospace,Consolas,monospace; font-size:.94em; overflow-wrap:anywhere; }
+    @media(max-width:700px) { main { margin:0; padding:24px 18px; border-radius:0; } h1 { font-size:24px; } th,td { padding:10px; } }
+    @page { size:A4; margin:16mm; }
+    @media print {
+      body { background:white; font-size:11pt; }
+      main { max-width:none; padding:0; margin:0; box-shadow:none; }
+      h1 { font-size:23pt; } h2,h3 { break-after:avoid; }
+      tr { break-inside:avoid; } thead { display:table-header-group; }
+      .table-wrap { overflow:visible; }
+      table { table-layout:fixed; } th,td { padding:8px; font-size:10pt; min-width:0; white-space:normal; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>{{TITLE}}</h1>
+    <p class="meta">日期：{{REPORT_DATE}}｜時間：{{TIMEZONE_LABEL}}</p>
+  </header>
+  <section aria-labelledby="summary-title">
+    <h2 id="summary-title">執行摘要</h2>
+    <p class="summary">{{SUMMARY}}</p>
+  </section>
+  <section aria-labelledby="scope-title">
+    <h2 id="scope-title">執行範圍</h2>
+    <ol>{{SCOPE_ITEMS}}</ol>
+  </section>
+  <section aria-labelledby="time-title">
+    <h2 id="time-title">執行時間</h2>
+    <div class="table-wrap">
+      <table aria-labelledby="time-title">
+        <thead><tr><th scope="col">環境</th><th scope="col">執行開始時間</th><th scope="col">完成時間</th><th scope="col">總耗時</th></tr></thead>
+        <tbody>{{TIME_ROWS}}</tbody>
+      </table>
+    </div>
+    <div class="note">{{TIME_NOTES}}</div>
+  </section>
+  <section aria-labelledby="result-title">
+    <h2 id="result-title">執行結果</h2>
+    <div class="table-wrap">
+      <table aria-labelledby="result-title">
+        <thead><tr><th scope="col">環境</th><th scope="col">主機識別</th><th scope="col">流程狀態</th><th scope="col">退出碼</th><th scope="col">啟動腳本</th></tr></thead>
+        <tbody>{{RESULT_ROWS}}</tbody>
+      </table>
+    </div>
+  </section>
+  <section aria-labelledby="findings-title">
+    <h2 id="findings-title">{{FINDINGS_TITLE}}</h2>
+    {{FINDING_GROUPS}}
+  </section>
+  <section aria-labelledby="tracking-title">
+    <h2 id="tracking-title">操作追蹤編號</h2>
+    <div class="table-wrap">
+      <table aria-labelledby="tracking-title">
+        <thead><tr><th scope="col">環境</th><th scope="col">操作編號</th></tr></thead>
+        <tbody>{{OPERATION_ROWS}}</tbody>
+      </table>
+    </div>
+  </section>
+</main>
+</body>
+</html>
