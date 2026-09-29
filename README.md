@@ -10,6 +10,7 @@ Nothing here is tied to a single agent. Any host that implements the Agent Skill
 | --- | --- |
 | [`architecture-spec`](architecture-spec/SKILL.md) | Produces a two-layer architecture specification as a self-contained HTML report: a plain-language section for product and engineering readers, plus an architect appendix covering contracts, dependency direction, invariants, failure policy, migration, tests, and acceptance criteria. Inspects the codebase first, then resolves open design decisions one question per turn. |
 | [`odoo-operations-report`](odoo-operations-report/SKILL.md) | 將 Odoo MCP 操作結果或既有維運紀錄整理為 HTML 與 Markdown 報告；沿用已確認的欄位與修訂，核對時間推算、流程結果及證據範圍。 |
+| [`vix-term-structure`](vix-term-structure-skill/SKILL.md) | 收集 CBOE VIX 與 VIX3M 資料，依期限結構判讀波動風險狀態，提供文字與 JSON 報告，作為風險與倉位調整的參考。 |
 
 ## Install
 

@@ -1,0 +1,44 @@
+name: daily-vix-term-structure
+
+# Runs the collector every weekday after the US close and commits the report
+# as an artifact. Useful as a live smoke test that the CBOE endpoints still work.
+#
+# Fork-friendly: no secrets required, no external services.
+
+on:
+  schedule:
+    # 21:30 UTC = 17:30 ET (after the 16:00 ET regular close settles)
+    - cron: "30 21 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run VIX term structure collector
+        run: |
+          python3 scripts/vix_term_structure.py | tee report.txt
+          python3 scripts/vix_term_structure.py --json > report.json
+
+      - name: Show report in the job summary
+        run: |
+          {
+            echo '## VIX Term Structure'
+            echo '```'
+            cat report.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vix-term-structure-report
+          path: |
+            report.txt
+            report.json
+          retention-days: 30
